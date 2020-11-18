@@ -931,11 +931,15 @@ module.exports = g;
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _modules_modals__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./modules/modals */ "./src/js/modules/modals.js");
+/* harmony import */ var _modules_sliders__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./modules/sliders */ "./src/js/modules/sliders.js");
+
 
 window.addEventListener('DOMContentLoaded', function () {
   'use strict';
 
   Object(_modules_modals__WEBPACK_IMPORTED_MODULE_0__["default"])();
+  Object(_modules_sliders__WEBPACK_IMPORTED_MODULE_1__["default"])('.feedback-slider-item', 'horizontal', '.main-prev-btn', '.main-next-btn');
+  Object(_modules_sliders__WEBPACK_IMPORTED_MODULE_1__["default"])('.main-slider-item', 'vertical');
 });
 
 /***/ }),
@@ -1051,6 +1055,104 @@ var modals = function modals() {
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (modals);
+
+/***/ }),
+
+/***/ "./src/js/modules/sliders.js":
+/*!***********************************!*\
+  !*** ./src/js/modules/sliders.js ***!
+  \***********************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var core_js_modules_web_dom_collections_for_each__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! core-js/modules/web.dom-collections.for-each */ "./node_modules/core-js/modules/web.dom-collections.for-each.js");
+/* harmony import */ var core_js_modules_web_dom_collections_for_each__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_web_dom_collections_for_each__WEBPACK_IMPORTED_MODULE_0__);
+
+
+var sliders = function sliders(slides, dir, prev, next) {
+  //! Текущий слайд который видит пользователь
+  var slideIndex = 1,
+      //! Переменная для остановки переключения слайдов при наведении
+  paused = false; //! Элементы для работы 
+
+  var items = document.querySelectorAll(slides); //! Функция отвечает за перемещение слайдов
+
+  function showSlides(n) {
+    //! Если аргумент больше чем кол-во слайдов вообще, то мы вернемся в начало
+    if (n > items.length) {
+      slideIndex = 1;
+    } //! Если аргумент меньше чем кол-во слайдов
+
+
+    if (n < 1) {
+      slideIndex = items.length;
+    } //! Скрываем все слайды 
+
+
+    items.forEach(function (item) {
+      item.classList.add('animated');
+      item.style.display = 'none';
+    }); //! Показываем лишь нужный 
+
+    items[slideIndex - 1].style.display = 'block';
+  } //!Выполняем первичную инициализацию слайдов, при запуске функция скроет все слайды и покажет первый
+
+
+  showSlides(slideIndex); //! Функция смены слайдов ее вешаем на событие клика
+
+  function changeSlides(n) {
+    showSlides(slideIndex += n);
+  } //! Если элемента нет на странице то код выполниться даже без него ПОЧИТАТЬ ПРО TRY CATCH!!!!!!!!
+
+
+  try {
+    var prevBtn = document.querySelector(prev),
+        nextBtn = document.querySelector(next); //! При клике на кнопку меняем индекс слайда
+
+    prevBtn.addEventListener('click', function () {
+      changeSlides(-1);
+      items[slideIndex - 1].classList.remove('slideInLeft');
+      items[slideIndex - 1].classList.add('slideInRight');
+    });
+    nextBtn.addEventListener('click', function () {
+      changeSlides(1);
+      items[slideIndex - 1].classList.remove('slideInRight');
+      items[slideIndex - 1].classList.add('slideInLeft');
+    });
+  } catch (e) {}
+
+  function activateAnimation() {
+    //! Автоматическое переключение слайдов
+    if (dir === 'vertical') {
+      //! Записывем сработавшую анимацию переключения в переменную что бы остановить анимацию
+      paused = setInterval(function () {
+        changeSlides(1);
+        items[slideIndex - 1].classList.add('slideInDown');
+      }, 5000);
+    } else {
+      paused = setInterval(function () {
+        changeSlides(1);
+        items[slideIndex - 1].classList.remove('slideInLeft');
+        items[slideIndex - 1].classList.add('slideInRight');
+      }, 5000);
+    }
+  } //! Первоначальная инициализация анимации
+
+
+  activateAnimation(); //! Если наводим на слайд то очищаем интервал останавливаем анимацию
+
+  items[0].parentNode.addEventListener('mouseenter', function () {
+    clearInterval(paused);
+  }); //! Если убрали курсор со слайдера то запускаем заново функцию анимации
+
+  items[0].parentNode.addEventListener('mouseleave', function () {
+    activateAnimation();
+  });
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (sliders);
 
 /***/ })
 
