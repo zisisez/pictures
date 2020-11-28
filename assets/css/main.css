@@ -1134,8 +1134,7 @@ h4 {
   color: #ffffff;
   border: none;
 }
-.pageup {
-  display: none;
+/* .pageup {
   opacity: 0;
   width: 26px;
   height: 26px;
@@ -1147,7 +1146,7 @@ h4 {
   cursor: pointer;
   border: 1px solid white;
   transition: 1s all;
-}
+} */
 .popup-content {
   position: fixed;
   text-align: center;
