@@ -842,8 +842,13 @@ h4 {
 .feedback-slider-item {
   padding-bottom: 5rem;
 }
+
 .feedback-block {
   position: relative;
+}
+
+.feedback-block img {
+  max-width: 100%;
 }
 .feedback-block .button-order {
   position: absolute;
@@ -1380,6 +1385,7 @@ h4 {
   }
   .feedback-slider-item {
     padding-bottom: 7rem;
+    max-width: 100%;
   }
   .feedback-heading {
     margin: 0;
@@ -1606,6 +1612,9 @@ h4 {
   .main-slider-btn {
     width: 2rem;
     height: 2rem;
+  }
+  .main-slider-item img {
+    max-width: 100%;
   }
   .main .logo {
     font-size: 1.5rem;
