@@ -67,6 +67,12 @@ h3,
 h4 {
   font-family: "Circe Extra Bold", sans-serif;
 }
+.main-slider-item img {
+  max-width: 100%;
+}
+.feedback-slider-item img {
+  max-width: 100%;
+}
 .p15 {
   font-size: 1.5;
 }
@@ -842,13 +848,8 @@ h4 {
 .feedback-slider-item {
   padding-bottom: 5rem;
 }
-
 .feedback-block {
   position: relative;
-}
-
-.feedback-block img {
-  max-width: 100%;
 }
 .feedback-block .button-order {
   position: absolute;
@@ -1134,7 +1135,7 @@ h4 {
   color: #ffffff;
   border: none;
 }
-/* .pageup {
+.pageup {
   opacity: 0;
   width: 26px;
   height: 26px;
@@ -1146,7 +1147,7 @@ h4 {
   cursor: pointer;
   border: 1px solid white;
   transition: 1s all;
-} */
+}
 .popup-content {
   position: fixed;
   text-align: center;
@@ -1385,7 +1386,6 @@ h4 {
   }
   .feedback-slider-item {
     padding-bottom: 7rem;
-    max-width: 100%;
   }
   .feedback-heading {
     margin: 0;
@@ -1613,9 +1613,6 @@ h4 {
     width: 2rem;
     height: 2rem;
   }
-  .main-slider-item img {
-    max-width: 100%;
-  }
   .main .logo {
     font-size: 1.5rem;
     line-height: 4rem;
@@ -1726,7 +1723,7 @@ h4 {
     left: -1rem;
   }
   .often-questions {
-    padding: 6rem 0 4rem 0;
+    padding: 20rem 0 4rem 0;
   }
   .often-questions h2 {
     margin-bottom: 3rem;

@@ -5316,13 +5316,13 @@ var sliders = function sliders(slides, dir, prev, next) {
 
     prevBtn.addEventListener('click', function () {
       changeSlides(-1);
-      items[slideIndex - 1].classList.remove('slideInLeft');
-      items[slideIndex - 1].classList.add('slideInRight');
+      items[slideIndex - 1].classList.remove('fadeIn');
+      items[slideIndex - 1].classList.add('fadeOut');
     });
     nextBtn.addEventListener('click', function () {
       changeSlides(1);
-      items[slideIndex - 1].classList.remove('slideInRight');
-      items[slideIndex - 1].classList.add('slideInLeft');
+      items[slideIndex - 1].classList.remove('fadeOut');
+      items[slideIndex - 1].classList.add('fadeIn');
     });
   } catch (e) {}
 
@@ -5332,13 +5332,13 @@ var sliders = function sliders(slides, dir, prev, next) {
       //! Записывем сработавшую анимацию переключения в переменную что бы остановить анимацию
       paused = setInterval(function () {
         changeSlides(1);
-        items[slideIndex - 1].classList.add('slideInDown');
+        items[slideIndex - 1].classList.add('fadeIn');
       }, 5000);
     } else {
       paused = setInterval(function () {
         changeSlides(1);
-        items[slideIndex - 1].classList.remove('slideInLeft');
-        items[slideIndex - 1].classList.add('slideInRight');
+        items[slideIndex - 1].classList.remove('fadeOut');
+        items[slideIndex - 1].classList.add('fadeIn');
       }, 5000);
     }
   } //! Первоначальная инициализация анимации
